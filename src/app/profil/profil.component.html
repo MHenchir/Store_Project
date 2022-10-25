@@ -1,0 +1,142 @@
+<br /><br />
+<div class="container">
+  <article class="uk-comment">
+    <header class="uk-comment-header">
+      <div class="uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-auto">
+          <img
+            class="uk-comment-avatar"
+            [src]="dataProfil.image"
+            width="200"
+            height="200"
+            alt=""
+          />
+        </div>
+        <div class="uk-width-expand">
+          <h4 class="uk-comment-title uk-margin-remove">
+            <a class="uk-link-reset" routerLink="/profil">{{
+              dataProfil.flName
+            }}</a>
+          </h4>
+          <br />
+          <button
+            class="btn btn-info"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            <span uk-icon="icon:user"></span> Update profil
+          </button>
+          <br />
+          <br />
+          <button
+            class="btn btn-info"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal2"
+          >
+            <span uk-icon="icon:image"></span> Update image
+          </button>
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Modal title
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="flName"
+                      [(ngModel)]="dataProfil.flName"
+                    />
+                    <br />
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="bio"
+                      [(ngModel)]="dataProfil.bio"
+                    />
+
+                    <br />
+                    <div class="alert alert-success" *ngIf="successUpdate">
+                      {{ successUpdate }}
+                    </div>
+                    <br />
+                    <button class="btn btn-success" (click)="update()">
+                      Update now !
+                    </button>
+                  </form>
+                </div>
+                <div class="modal-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="modal fade"
+            id="exampleModal2"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Modal title
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <input
+                      type="file"
+                      name="file"
+                      accept=".jpg,.png,.jpeg"
+                      (change)="uploadImage($event)"
+                    />
+                    <div *ngIf="percontage | async as pct">
+                      <div *ngIf="pct === 100" class="alert alert-success">
+                        Upload Successufly Image !!!
+                      </div>
+                      <progress
+                        id="js-progressbar"
+                        class="uk-progress"
+                        [value]="pct"
+                        max="100"
+                      ></progress>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="uk-comment-body">
+      <p>
+        {{ dataProfil.bio }}
+      </p>
+    </div>
+  </article>
+</div>

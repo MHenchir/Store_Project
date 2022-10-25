@@ -1,0 +1,157 @@
+<br />
+<br />
+<h4 style="text-align: center">My products</h4>
+<div class="container">
+  <div class="body">
+    <button
+      class="btn btn-primary"
+      style="float: right"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Add Products
+    </button>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form #f="ngForm" (ngSubmit)="addProduct(f)">
+              <div class="row">
+                <div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Title"
+                    aria-label="First name"
+                    name="title"
+                    #title="ngModel"
+                    ngModel
+                  />
+                </div>
+                <br />
+                <div>
+                  <textarea
+                    class="form-control"
+                    id=""
+                    cols="30"
+                    rows="10"
+                    placeholder="Description"
+                    name="description"
+                    #description="ngModel"
+                    ngModel
+                  ></textarea>
+                </div>
+                <br />
+                <div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Image"
+                    aria-label="First name"
+                    name="image"
+                    #image="ngModel"
+                    ngModel
+                  />
+                </div>
+                <br />
+              </div>
+              <div class="alert alert-success" *ngIf="message">
+                {{ message }}
+              </div>
+              <br />
+              <button class="btn btn-success">Add Product</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+      <div class="col" *ngFor="let item of dataArray">
+        <div class="card" style="width: 18rem" *ngIf="Uid === item.uid">
+          <img [src]="item.image" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+            <button class="btn btn-danger" (click)="delete(item.id)">
+              Delete
+            </button>
+            <button
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal2"
+            >
+              Update
+            </button>
+            <div
+              class="modal fade"
+              id="exampleModal2"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Modal title
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="title"
+                        [(ngModel)]="item.title"
+                      />
+                      <br />
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="description"
+                        [(ngModel)]="item.description"
+                      />
+
+                      <br />
+                      <div class="alert alert-success" *ngIf="successUpdate">
+                        {{ successUpdate }}
+                      </div>
+                      <br />
+                      <button class="btn btn-success" (click)="update(item.id)">
+                        Update now !
+                      </button>
+                    </form>
+                  </div>
+                  <div class="modal-footer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
