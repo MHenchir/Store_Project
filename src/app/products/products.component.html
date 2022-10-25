@@ -9,7 +9,13 @@
           <img [src]="item.image" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">{{ item.title }}</h5>
-            <p class="card-text">{{ item.description }}</p>
+
+            <div class="scroll">
+              {{ item.description }}
+            </div>
+            <hr />
+          </div>
+          <div class="text-center mt-2 mb-2">
             <a class="btn btn-primary" (click)="detail(item.id)">Details</a>
           </div>
         </div>
